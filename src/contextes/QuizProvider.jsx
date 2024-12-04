@@ -85,14 +85,8 @@ function QuizProvider({ children }) {
 		? questions.reduce((acc, item) => acc + item.points, 0)
 		: 0;
 
-	// useEffect(function () {
-	// 	fetch('http://localhost:9000/questions')
-	// 		.then(res => res.json())
-	// 		.then(data => dispatch({ type: 'dataRecived', payload: data }))
-	// 		.catch(err => dispatch({ type: 'dataFaild' }));
-	// }, [])
-
 	useEffect(function () {
+		// fetch('http://localhost:9000/questions')
 		fetch('https://raw.githubusercontent.com/nadyozha/fast-react-quiz/main/data/questions.json')
 			.then(res => {
 				if (!res.ok) {
@@ -101,10 +95,10 @@ function QuizProvider({ children }) {
 				return res.json();
 			})
 			.then(data => {
-				if (!Array.isArray(data)) {
-					throw new Error('Data is not an array');
+				if (!data.questions || !Array.isArray(data.questions)) {
+					throw new Error('Data format is incorrect');
 				}
-				dispatch({ type: 'dataRecived', payload: data });
+				dispatch({ type: 'dataRecived', payload: data.questions });
 			})
 			.catch(err => dispatch({ type: 'dataFaild' }));
 	}, []);
