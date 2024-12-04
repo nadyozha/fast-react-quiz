@@ -81,7 +81,9 @@ function QuizProvider({ children }) {
 	const [{ questions, status, index, answer, points, highscore, secondsRemaning }, dispatch] = useReducer(reducer, initialState);
 
 	const numQuestions = questions.length;
-	const maxPossiblePoints = questions.reduce((acc, item) => acc + item.points, 0);
+	const maxPossiblePoints = Array.isArray(questions)
+		? questions.reduce((acc, item) => acc + item.points, 0)
+		: 0;
 
 	// useEffect(function () {
 	// 	fetch('http://localhost:9000/questions')
@@ -98,7 +100,12 @@ function QuizProvider({ children }) {
 				}
 				return res.json();
 			})
-			.then(data => dispatch({ type: 'dataRecived', payload: data }))
+			.then(data => {
+				if (!Array.isArray(data)) {
+					throw new Error('Data is not an array');
+				}
+				dispatch({ type: 'dataRecived', payload: data });
+			})
 			.catch(err => dispatch({ type: 'dataFaild' }));
 	}, []);
 
