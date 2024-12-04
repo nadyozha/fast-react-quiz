@@ -83,12 +83,24 @@ function QuizProvider({ children }) {
 	const numQuestions = questions.length;
 	const maxPossiblePoints = questions.reduce((acc, item) => acc + item.points, 0);
 
+	// useEffect(function () {
+	// 	fetch('http://localhost:9000/questions')
+	// 		.then(res => res.json())
+	// 		.then(data => dispatch({ type: 'dataRecived', payload: data }))
+	// 		.catch(err => dispatch({ type: 'dataFaild' }));
+	// }, [])
+
 	useEffect(function () {
-		fetch('http://localhost:9000/questions')
-			.then(res => res.json())
+		fetch('https://raw.githubusercontent.com/nadyozha/fast-react-quiz/main/data/questions.json')
+			.then(res => {
+				if (!res.ok) {
+					throw new Error('Network response was not ok');
+				}
+				return res.json();
+			})
 			.then(data => dispatch({ type: 'dataRecived', payload: data }))
 			.catch(err => dispatch({ type: 'dataFaild' }));
-	}, [])
+	}, []);
 
 
 	return (
