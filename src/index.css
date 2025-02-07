@@ -110,6 +110,7 @@ progress {
   background-color: var(--color-medium);
   border-radius: 100px;
 }
+
 ::-webkit-progress-value {
   background-color: var(--color-theme);
   border-radius: 100px;
@@ -161,6 +162,7 @@ progress {
   border: 2px solid var(--color-theme);
   color: var(--color-light);
 }
+
 .btn-option.wrong {
   background-color: var(--color-accent);
   border: 2px solid var(--color-accent);
@@ -217,8 +219,7 @@ progress {
 .loader {
   width: 50px;
   height: 24px;
-  background: radial-gradient(circle closest-side, currentColor 90%, #0000) 0%
-      50%,
+  background: radial-gradient(circle closest-side, currentColor 90%, #0000) 0% 50%,
     radial-gradient(circle closest-side, currentColor 90%, #0000) 50% 50%,
     radial-gradient(circle closest-side, currentColor 90%, #0000) 100% 50%;
   background-size: calc(100% / 3) 12px;
@@ -230,12 +231,15 @@ progress {
   20% {
     background-position: 0% 0%, 50% 50%, 100% 50%;
   }
+
   40% {
     background-position: 0% 100%, 50% 0%, 100% 50%;
   }
+
   60% {
     background-position: 0% 50%, 50% 100%, 100% 0%;
   }
+
   80% {
     background-position: 0% 50%, 50% 50%, 100% 100%;
   }
@@ -256,4 +260,62 @@ progress {
 .counter * {
   font-size: inherit;
   padding: 0.8rem;
+}
+
+@media (max-width: 767.98px) {
+  body {
+    padding: 3rem 2rem;
+  }
+
+
+  .app-header {
+    width: 42rem;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
+  img {
+    width: 12rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-top: 2rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3,
+  h4 {
+    font-size: 2rem;
+  }
+
+  .main {
+    width: 100%;
+    margin-top: 4rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .timer {
+    margin-bottom: 2rem;
+  }
+
+  .btn-option {
+    font-size: 1.4rem;
+  }
+
+  .result {
+    padding: 1rem 0;
+    font-size: 1.6rem;
+  }
+
+  .highscore {
+    font-size: 2.8rem;
+    margin-top: 4rem;
+  }
 }
